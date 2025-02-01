@@ -17,7 +17,7 @@ window.addEventListener('scroll', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    const element = document.querySelector('.matter-container');
+    const elements = document.querySelectorAll('.matter-container');
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
         threshold: 0.5 // Trigger the animation when 10% of the element is visible
     });
 
-    observer.observe(element);
+    elements.forEach((element) => {
+        observer.observe(element);
+    })
 });
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -47,4 +49,21 @@ document.addEventListener("DOMContentLoaded", function() {
     elements.forEach((element) => {
         observer.observe(element);
     })
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const element = document.querySelector('.photographyawards');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('float-photos');
+                observer.unobserve(entry.target); // Stop observing once the animation is triggered
+            }
+        });
+    }, {
+        threshold: 0.3 // Trigger the animation when 10% of the element is visible
+    });
+    
+      observer.observe(element);
+
 });
